@@ -1,13 +1,6 @@
 # app/models.py
 from pydantic import BaseModel, Field
-from enum import Enum
 from datetime import datetime
-
-class ColorTheme(str, Enum):
-    """Перечисление доступных цветовых схем."""
-    modern_blue = "modern_blue"
-    elegant_green = "elegant_green"
-    corporate_gray = "corporate_gray"
 
 class OfferData(BaseModel):
     """Модель данных для генерации оффера."""
@@ -22,7 +15,6 @@ class OfferData(BaseModel):
     hiring_manager_title: str = Field(..., example="Руководитель отдела разработки")
     company_address: str = Field(..., example="ул. Технологическая, д. 1, Москва")
     company_phone: str = Field(..., example="+7 (495) 123-45-67")
-    theme: ColorTheme = Field(ColorTheme.modern_blue, description="Цветовая схема документа")
     
-    # Добавляем поле с текущей датой по умолчанию
+    # Поле date с текущей датой по умолчанию
     date: str = Field(default_factory=lambda: datetime.now().strftime("%d %B %Y г."))
