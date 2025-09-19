@@ -6,90 +6,73 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-        /* --- Цветовые схемы --- */
-        :root {
-            --theme-modern-blue-primary: #007bff;
-            --theme-modern-blue-secondary: #e9f5ff;
-            --theme-modern-blue-text: #333;
-
-            --theme-elegant-green-primary: #28a745;
-            --theme-elegant-green-secondary: #eaf6ec;
-            --theme-elegant-green-text: #212529;
-
-            --theme-corporate-gray-primary: #6c757d;
-            --theme-corporate-gray-secondary: #f8f9fa;
-            --theme-corporate-gray-text: #495057;
-        }
-
-        /* --- Применение переменных в зависимости от темы --- */
-        .modern_blue {
-            --primary-color: var(--theme-modern-blue-primary);
-            --secondary-color: var(--theme-modern-blue-secondary);
-            --text-color: var(--theme-modern-blue-text);
-        }
-        .elegant_green {
-            --primary-color: var(--theme-elegant-green-primary);
-            --secondary-color: var(--theme-elegant-green-secondary);
-            --text-color: var(--theme-elegant-green-text);
-        }
-        .corporate_gray {
-            --primary-color: var(--theme-corporate-gray-primary);
-            --secondary-color: var(--theme-corporate-gray-secondary);
-            --text-color: var(--theme-corporate-gray-text);
-        }
-
-        /* --- Общие стили --- */
         body {
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
+            font-size: 10pt; /* Уменьшаем базовый размер шрифта */
+            line-height: 1.5; /* Уменьшаем межстрочный интервал */
+            color: #333;
             background-color: #fff;
             margin: 0;
             padding: 0;
         }
         .container {
             max-width: 800px;
-            margin: 40px auto;
-            padding: 40px;
-            border-top: 8px solid var(--primary-color);
+            margin: 20px auto; /* Уменьшаем внешние отступы */
+            padding: 30px 40px; /* Уменьшаем внутренние отступы */
+            border-top: 7px solid #007bff;
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
         }
         .header {
             text-align: center;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
         .header h1 {
-            font-size: 36px;
-            color: var(--primary-color);
+            font-size: 30px; /* Уменьшаем заголовок */
+            color: #007bff;
             margin: 0;
         }
+        .content {
+            text-align: justify;
+        }
         .content h2 {
-            font-size: 22px;
-            color: var(--text-color);
-            margin-top: 30px;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px; /* Уменьшаем отступы */
+            border-bottom: 2px solid #e9f5ff;
+            padding-bottom: 8px;
+        }
+        .content p {
+            margin-bottom: 12px; /* Уменьшаем отступы между параграфами */
         }
         .highlight {
-            background-color: var(--secondary-color);
-            padding: 20px;
-            border-left: 5px solid var(--primary-color);
+            background-color: #e9f5ff;
+            padding: 15px 20px;
+            border-left: 5px solid #007bff;
             border-radius: 8px;
-            margin: 25px 0;
+            margin: 20px 0;
+        }
+        .highlight p {
+            margin-bottom: 8px;
+        }
+        .highlight p:last-child {
+            margin-bottom: 0;
+        }
+        .signature-section {
+            margin-top: 25px; /* Уменьшаем отступ для подписи */
         }
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 30px;
+            padding-top: 15px;
             border-top: 1px solid #eee;
-            font-size: 14px;
+            font-size: 9pt;
             color: #777;
         }
     </style>
 </head>
-<body class="{{ theme }}">
+<body>
     <div class="container">
         <div class="header">
             <h1>Предложение о работе</h1>
@@ -99,7 +82,7 @@
         <div class="content">
             <p><strong>Дата:</strong> {{ date }}</p>
             <p><strong>Уважаемый(ая) {{ candidate_name }},</strong></p>
-            <p>Мы рады предложить Вам должность <strong>{{ position_title }}</strong> в компании <strong>{{ company_name }}</strong>. Мы уверены, что Вы станете ценным членом нашей команды.</p>
+            <p>Мы рады предложить Вам должность <strong>{{ position_title }}</strong> в компании <strong>{{ company_name }}</strong>. Мы были очень впечатлены Вашими навыками и опытом и уверены, что Вы станете ценным членом нашей команды.</p>
 
             <h2>Основные условия</h2>
             <div class="highlight">
@@ -110,11 +93,14 @@
             </div>
 
             <h2>Следующие шаги</h2>
-            <p>Чтобы принять это предложение, пожалуйста, свяжитесь с нами до <strong>{{ deadline_date }}</strong>.</p>
-            <p>С наилучшими пожеланиями,</p>
-            <br>
-            <p><strong>{{ hiring_manager_name }}</strong></p>
-            <p><em>{{ hiring_manager_title }}</em></p>
+            <p>Чтобы принять это предложение, пожалуйста, свяжитесь с нами до <strong>{{ deadline_date }}</strong>. Мы с нетерпением ждем возможности приветствовать Вас в нашей команде и уверены, что вместе мы достигнем больших успехов.</p>
+            
+            <div class="signature-section">
+                <p>С наилучшими пожеланиями,</p>
+                <br>
+                <p><strong>{{ hiring_manager_name }}</strong></p>
+                <p><em>{{ hiring_manager_title }}</em></p>
+            </div>
         </div>
 
         <div class="footer">
