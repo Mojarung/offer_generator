@@ -1,17 +1,18 @@
-# docker-compose.yml
+# docker-compose.yml (Production Version)
 
 version: '3.8'
 
 services:
   api:
+    # Указываем, что нужно собрать образ из Dockerfile в текущей директории
     build: .
-    container_name: offer-api-dev
+    
+    # Задаем имя для контейнера
+    container_name: offer-api
+    
+    # Пробрасываем порт 8000 на локальной машине на порт 80 в контейнере
     ports:
       - "8000:80"
       
-    # Монтирует вашу папку с кодом в контейнер для мгновенного обновления
-    volumes:
-      - ./app:/code/app
-      
-    # Добавляет флаг --reload для автоматического перезапуска сервера при изменениях
-    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]
+    # Политика перезапуска контейнера
+    restart: unless-stopped
