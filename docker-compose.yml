@@ -1,0 +1,17 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: offer-api-dev
+    ports:
+      - "8000:80"
+      
+    # Монтирует вашу папку с кодом в контейнер для мгновенного обновления
+    volumes:
+      - ./app:/code/app
+      
+    # Добавляет флаг --reload для автоматического перезапуска сервера при изменениях
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]
